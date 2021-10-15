@@ -1,5 +1,6 @@
 #include <GinX.h>
 #include"glm/glm.hpp"
+#include "imgui/imgui.h"
 
 class ExampleLayer : public GinX::Layer
 {
@@ -10,18 +11,28 @@ public:
 
 	}
 
-	void OnUpdate() override {
+	void OnUpdate() override 
+	{
 		if (GinX::Input::IsKeyPressed(GX_KEY_TAB))
 			GX_TRACE("Tab key is pressed");
 	}
 
-	void OnEvent(GinX::Event& event) override {
+	virtual void OnImGuiRender() override 
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello world");
+		ImGui::End();
+	}
+
+	void OnEvent(GinX::Event& event) override 
+	{
 		//GX_TRACE("{0}", event);
 	}
 };
 
 
-class Sandbox : public GinX::Application {
+class Sandbox : public GinX::Application 
+{
 
 public:
 	Sandbox() 
@@ -36,6 +47,7 @@ public:
 	}
 };
 
-GinX::Application* GinX::CreateApplication() {
+GinX::Application* GinX::CreateApplication() 
+{
 	return new Sandbox();
 }

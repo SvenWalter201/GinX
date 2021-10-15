@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef GX_PLATFORM_WINDOWS
+#if GX_DYNAMIC_LINK
 	#ifdef GX_BUILD_DLL
 		#define GINX_API __declspec(dllexport)
 	#else 
 		#define GINX_API __declspec(dllimport)
 	#endif
+#else
+	#define GINX_API
+#endif
 #else
 	#error GinX only supports windows
 #endif
