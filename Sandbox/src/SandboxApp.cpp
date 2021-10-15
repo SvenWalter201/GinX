@@ -24,12 +24,14 @@ public:
 class Sandbox : public GinX::Application {
 
 public:
-	Sandbox() {
+	Sandbox() 
+	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new GinX::ImGuiLayer());
+		//PushOverlay(new GinX::ImGuiLayer());
 	}
 
-	~Sandbox() {
+	~Sandbox() 
+	{
 
 	}
 };

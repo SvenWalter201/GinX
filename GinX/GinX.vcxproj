@@ -165,7 +165,6 @@
     <ClInclude Include="src\GinX\Log.h" />
     <ClInclude Include="src\GinX\MouseButtonCodes.h" />
     <ClInclude Include="src\GinX\Window.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\gxpch.h" />
@@ -587,11 +586,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GinX\Application.cpp" />
+    <ClCompile Include="src\GinX\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\GinX\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\GinX\Layers\Layer.cpp" />
     <ClCompile Include="src\GinX\Layers\LayerStack.cpp" />
     <ClCompile Include="src\GinX\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\gxpch.cpp">

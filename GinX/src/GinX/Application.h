@@ -8,6 +8,8 @@
 #include "GinX/Window.h"
 #include "GinX/Events/ApplicationEvent.h"
 
+#include "GinX/ImGui/ImGuiLayer.h"
+
 namespace GinX {
 	class GINX_API Application
 	{
@@ -28,6 +30,7 @@ namespace GinX {
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:
