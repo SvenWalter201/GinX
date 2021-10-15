@@ -1,0 +1,12 @@
+[submodule "GinX/vendor/spdlog"]
+	path = GinX/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "GinX/vendor/GLFW"]
+	path = GinX/vendor/GLFW
+	url = https://github.com/SvenWalter201/glfw
+[submodule "GinX/vendor/imgui"]
+	path = GinX/vendor/imgui
+	url = https://github.com/SvenWalter201/imgui
+[submodule "GinX/Vendor/glm"]
+	path = GinX/Vendor/glm
+	url = https://github.com/g-truc/glm
