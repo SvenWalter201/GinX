@@ -4,32 +4,12 @@
 #include "GinX/Log.h"
 
 #include "GinX/Input.h"
-#include <glad/glad.h>
+
+#include "Renderer/Renderer.h"
 
 namespace GinX {
 
 	Application* Application::s_Instance = nullptr;
-
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type) 
-	{
-		switch (type)
-		{
-		case GinX::ShaderDataType::Float:	return GL_FLOAT;
-		case GinX::ShaderDataType::Float2:	return GL_FLOAT;
-		case GinX::ShaderDataType::Float3:	return GL_FLOAT;
-		case GinX::ShaderDataType::Float4:	return GL_FLOAT;
-		case GinX::ShaderDataType::Mat3:	return GL_FLOAT;
-		case GinX::ShaderDataType::Mat4:	return GL_FLOAT;
-		case GinX::ShaderDataType::Int:		return GL_INT;
-		case GinX::ShaderDataType::Int2:	return GL_INT;
-		case GinX::ShaderDataType::Int3:	return GL_INT;
-		case GinX::ShaderDataType::Int4:	return GL_INT;
-		case GinX::ShaderDataType::Bool:	return GL_BOOL;
-		}
-
-		GX_CORE_ASSERT(false, "Unknown ShaderDataType");
-		return 0;
-	}
 
 	Application::Application() 
 	{
@@ -41,8 +21,7 @@ namespace GinX {
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
+		m_VertexArray.reset(VertexArray::Create());
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -50,38 +29,24 @@ namespace GinX {
 			0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f,
 		};
 
-		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		std::shared_ptr<VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		{
-			BufferLayout layout = {
-				{ShaderDataType::Float3, "a_Position"},
-				{ShaderDataType::Float4, "a_Color"}
-			};
+		vertexBuffer->SetLayout({
+			{ShaderDataType::Float3, "a_Position"},
+			{ShaderDataType::Float4, "a_Color"}
+			});
 
-			m_VertexBuffer->SetLayout(layout);
-		}
-
-
-		uint32_t index = 0;
-		const auto& layout = m_VertexBuffer->GetLayout();
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(
-				index, 
-				element.GetComponentCount(), 
-				ShaderDataTypeToOpenGLBaseType(element.Type), 
-				element.Normalized ? GL_TRUE : GL_FALSE, 
-				layout.GetStride(),
-				(const void*)element.Offset);
-			index++;
-		}
-
-
+		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		unsigned int indices[3] = {0,1,2};
-		m_IndexBuffer.reset(IndexBuffer::Create(indices, std::size(indices)));
-		
+
+		std::shared_ptr<IndexBuffer> indexBuffer;
+		indexBuffer.reset(IndexBuffer::Create(indices, std::size(indices)));
+		m_VertexArray->SetIndexBuffer(indexBuffer);
+
+		m_SquareVA.reset(VertexArray::Create());
+
 		std::string vertexSrc = R"(
 			#version 330 core
 
@@ -155,14 +120,17 @@ namespace GinX {
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
-			glClearColor(0.2f, 0.2f, 0.2f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0.2f, 0.2f, 0.2f, 1 });
+			RenderCommand::Clear();
+
+			Renderer::BeginScene();
 
 			m_Shader->Bind();
-			glBindVertexArray(m_VertexArray);
-			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
-			//auto [x, y] = Input::GetMousePosition();
-			//GX_CORE_TRACE("{0}, {1}",x,y);
+			Renderer::Submit(m_VertexArray);
+
+			Renderer::EndScene();
+
+			Renderer::Flush();
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)

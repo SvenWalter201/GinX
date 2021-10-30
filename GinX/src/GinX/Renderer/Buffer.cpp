@@ -9,8 +9,8 @@ namespace GinX
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None: GX_CORE_ASSERT(false, "RenderAPI::NONE is currently not supported"); return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+		case RendererAPI::API::None: GX_CORE_ASSERT(false, "RenderAPI::NONE is currently not supported"); return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		GX_CORE_ASSERT(false, "Unknown RendererAPI");
@@ -21,8 +21,8 @@ namespace GinX
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None: GX_CORE_ASSERT(false, "RenderAPI::NONE is currently not supported"); return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLIndexBuffer(indices, count);
+		case RendererAPI::API::None: GX_CORE_ASSERT(false, "RenderAPI::NONE is currently not supported"); return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLIndexBuffer(indices, count);
 		}
 
 		GX_CORE_ASSERT(false, "Unknown RendererAPI");
