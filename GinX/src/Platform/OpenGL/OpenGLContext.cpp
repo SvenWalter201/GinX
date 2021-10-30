@@ -18,6 +18,11 @@ namespace GinX
 
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		GX_CORE_ASSERT(status, "Failed to initialize GLAD");
+
+		GX_CORE_INFO("OpenGL Renderer");
+		GX_CORE_INFO("  Vendor: {0}", glGetString(GL_VENDOR));
+		GX_CORE_INFO("  Renderer: {0}", glGetString(GL_RENDERER));
+		GX_CORE_INFO("  Version: {0}", glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::SwapBuffers() 
