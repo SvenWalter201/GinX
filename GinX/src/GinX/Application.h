@@ -12,6 +12,9 @@
 #include "GinX/Renderer/Shader.h"
 #include "GinX/Renderer/Buffer.h"
 #include "GinX/Renderer/VertexArray.h"
+#include "Ginx/Renderer/Camera.h"
+
+#include "GinX/Core/Timestep.h"
 
 namespace GinX {
 	class GINX_API Application
@@ -36,11 +39,8 @@ namespace GinX {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<VertexArray> m_SquareVA;
 	private:
 		static Application* s_Instance;
 	};

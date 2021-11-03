@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GinX/Core.h"
+#include "GinX/Core/Timestep.h"
 #include "GinX/Events/Event.h"
 
 namespace GinX
@@ -13,7 +14,7 @@ namespace GinX
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(TimeStep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& evemt) {}
 	

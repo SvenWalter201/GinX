@@ -143,6 +143,7 @@
     <ClInclude Include="src\GinX.h" />
     <ClInclude Include="src\GinX\Application.h" />
     <ClInclude Include="src\GinX\Core.h" />
+    <ClInclude Include="src\GinX\Core\Timestep.h" />
     <ClInclude Include="src\GinX\EntryPoint.h" />
     <ClInclude Include="src\GinX\Events\ApplicationEvent.h" />
     <ClInclude Include="src\GinX\Events\Event.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="src\GinX\Log.h" />
     <ClInclude Include="src\GinX\MouseButtonCodes.h" />
     <ClInclude Include="src\GinX\Renderer\Buffer.h" />
+    <ClInclude Include="src\GinX\Renderer\Camera.h" />
     <ClInclude Include="src\GinX\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\GinX\Renderer\RenderCommand.h" />
     <ClInclude Include="src\GinX\Renderer\Renderer.h" />
@@ -594,6 +596,7 @@
     <ClCompile Include="src\GinX\Layers\LayerStack.cpp" />
     <ClCompile Include="src\GinX\Log.cpp" />
     <ClCompile Include="src\GinX\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\GinX\Renderer\Camera.cpp" />
     <ClCompile Include="src\GinX\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\GinX\Renderer\Renderer.cpp" />
     <ClCompile Include="src\GinX\Renderer\RendererAPI.cpp" />
