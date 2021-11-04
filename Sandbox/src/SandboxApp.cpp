@@ -1,12 +1,16 @@
 #include <GinX.h>
-#include"glm/glm.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "imgui/imgui.h"
+#include <glm/gtc/matrix_transform.hpp>
+
+#include "Platform/OpenGL/OpenGLShader.h"
 
 class ExampleLayer : public GinX::Layer
 {
 public:
 	ExampleLayer() :
-		Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_cameraPosition(0.0f)
+		Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_cameraPosition(0.0f), m_TrianglePosition(0.0f,0.0f,0.0f)
 	{
 		m_VertexArray.reset(GinX::VertexArray::Create());
 
@@ -41,6 +45,7 @@ public:
 			layout(location=1) in vec4 a_Color;
 			
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
 
@@ -50,7 +55,7 @@ public:
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position,1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position,1.0);
 			}
 		)";
 
@@ -62,13 +67,15 @@ public:
 			in vec3 v_Position;
 			in vec4 v_Color;
 
+			uniform vec3 u_Color;
+
 			void main()
 			{
-				color = v_Color;
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_Shader.reset(new GinX::Shader(vertexSrc, fragmentSrc));
+		m_FlatShader.reset(GinX::Shader::Create(vertexSrc, fragmentSrc));
 	}
 
 	void OnUpdate(GinX::TimeStep ts) override 
@@ -99,7 +106,32 @@ public:
 
 		GinX::Renderer::BeginScene(m_Camera);
 
-		GinX::Renderer::Submit(m_VertexArray, m_Shader);
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.05f));
+		int res = 50;
+		glm::vec4 red(0.8f, 0.2f, 0.3f, 1.0f);
+		glm::vec4 blue(0.3f, 0.2f, 0.8f, 1.0f);
+
+		std::static_pointer_cast<GinX::OpenGLShader>(m_FlatShader)->Bind();
+
+
+		for (size_t i = 0, x = 0, y = 0; i < res * res; i++, x++)
+		{
+			if (x == res)
+			{
+				x = 0;
+				y += 1;
+			}
+
+			if (x % 2 == y % 2)
+				std::static_pointer_cast<GinX::OpenGLShader>(m_FlatShader)->UploadUniformFloat3("u_Color", m_TriColorA);
+			else 
+				std::static_pointer_cast<GinX::OpenGLShader>(m_FlatShader)->UploadUniformFloat3("u_Color", m_TriColorB);
+
+			glm::vec3 pos(x * 0.06f - 0.75f, y * 0.06f - 0.75f, 0.0f);
+			glm::mat4 t = glm::translate(glm::mat4(1.0f), pos) * scale;
+			GinX::Renderer::Submit(m_VertexArray, m_FlatShader, t);
+		}
+
 
 		GinX::Renderer::EndScene();
 
@@ -108,7 +140,10 @@ public:
 
 	virtual void OnImGuiRender() override 
 	{
-		
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("ColorA", glm::value_ptr(m_TriColorA));
+		ImGui::ColorEdit3("ColorB", glm::value_ptr(m_TriColorB));
+		ImGui::End();
 	}
 
 	void OnEvent(GinX::Event& event) override 
@@ -117,7 +152,7 @@ public:
 
 private:
 
-	std::shared_ptr<GinX::Shader> m_Shader;
+	std::shared_ptr<GinX::Shader> m_FlatShader;
 	std::shared_ptr<GinX::VertexArray> m_VertexArray;
 
 	std::shared_ptr<GinX::VertexArray> m_SquareVA;
@@ -125,8 +160,13 @@ private:
 	GinX::OrthographicCamera m_Camera;
 	glm::vec3 m_cameraPosition;
 	float m_CameraSpeed = 6.0f;
+	float m_TriangleSpeed = 1.0f;
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 50.0f;
+
+	glm::vec3 m_TrianglePosition;
+	glm::vec3 m_TriColorA = {0.8f, 0.2f, 0.3f};
+	glm::vec3 m_TriColorB = {0.3f, 0.2f, 0.8f};
 };
 
 
