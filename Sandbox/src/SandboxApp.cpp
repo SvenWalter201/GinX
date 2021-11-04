@@ -62,84 +62,12 @@ public:
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 
-		std::string vertexSrc = R"(
-			#version 330 core
+		m_FlatShader.reset(GinX::Shader::Create("assets/shaders/FlatColor.glsl"));
 
-			layout(location=0) in vec3 a_Position;
-			layout(location=1) in vec4 a_Color;
-			
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
+		m_TextureShader.reset(GinX::Shader::Create("assets/shaders/Texture.glsl"));
 
-			out vec3 v_Position;
-
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position,1.0);
-			}
-		)";
-
-		std::string fragmentSrc = R"(
-			#version 330 core
-
-			layout(location=0) out vec4 color;
-			
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			uniform vec3 u_Color;
-
-			void main()
-			{
-				color = vec4(u_Color, 1.0);
-			}
-		)";
-
-		m_FlatShader.reset(GinX::Shader::Create(vertexSrc, fragmentSrc));
-
-
-
-
-		std::string textureShaderVertexSrc = R"(
-			#version 330 core
-
-			layout(location=0) in vec3 a_Position;
-			layout(location=1) in vec2 a_TexCoord;
-			
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TexCoord;
-
-			void main()
-			{
-				v_TexCoord = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position,1.0);
-			}
-		)";
-
-		std::string textureShaderFragmentSrc = R"(
-			#version 330 core
-
-			layout(location=0) out vec4 color;
-			
-			in vec2 v_TexCoord;
-
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-		m_TextureShader.reset(GinX::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
-
-		m_Texture2D = GinX::Texture2D::Create("assets/checkerboard.png");
+		m_Texture2D = GinX::Texture2D::Create("assets/textures/checkerboard.png");
+		m_TextureLogo2D = GinX::Texture2D::Create("assets/textures/logo2.png");
 
 		std::static_pointer_cast<GinX::OpenGLShader>(m_TextureShader)->Bind();
 		std::static_pointer_cast<GinX::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -183,12 +111,14 @@ public:
 
 		glm::mat4 squareTransform = glm::translate(glm::mat4(1.0f), { 0.0f, 0.0f, 0.0f });
 
-		std::static_pointer_cast<GinX::OpenGLShader>(m_FlatShader)->UploadUniformFloat3("u_Color",
-			{0.3f, 0.8f, 0.2f});
+		std::static_pointer_cast<GinX::OpenGLShader>(m_FlatShader)->UploadUniformFloat3("u_Color",{0.3f, 0.8f, 0.2f});
 
 		m_Texture2D->Bind();
 		GinX::Renderer::Submit(m_SquareVA, m_TextureShader, squareTransform);
 
+
+		m_TextureLogo2D->Bind();
+		GinX::Renderer::Submit(m_SquareVA, m_TextureShader, squareTransform);
 		/*
 		for (size_t i = 0, x = 0, y = 0; i < res * res; i++, x++)
 		{
@@ -233,6 +163,7 @@ private:
 
 	GinX::Ref<GinX::VertexArray> m_SquareVA;
 	GinX::Ref<GinX::Texture2D> m_Texture2D;
+	GinX::Ref<GinX::Texture2D> m_TextureLogo2D;
 	GinX::OrthographicCamera m_Camera;
 	glm::vec3 m_cameraPosition;
 	float m_CameraSpeed = 6.0f;

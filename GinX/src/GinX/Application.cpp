@@ -11,10 +11,13 @@ namespace GinX {
 
 	Application::Application()
 	{
+
 		GX_CORE_ASSERT(!s_Instance, "Application already exists");
 		s_Instance = this;
 		m_Window = Scope<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+
+		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
