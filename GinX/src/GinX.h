@@ -19,6 +19,7 @@
 #include "GinX/Renderer/VertexArray.h"
 #include "GinX/Renderer/Buffer.h"
 #include "GinX/Renderer/Shader.h"
+#include "GinX/Renderer/Texture.h"
 
 #include "GinX/Renderer/Camera.h"
 //------------------------

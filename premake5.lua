@@ -16,6 +16,7 @@ IncludeDir["GLFW"] = "GinX/vendor/GLFW/include"
 IncludeDir["Glad"] = "GinX/vendor/Glad/include"
 IncludeDir["ImGui"] = "GinX/vendor/imgui"
 IncludeDir["glm"] = "GinX/vendor/glm"
+IncludeDir["stb_image"] = "GinX/vendor/stb_image"
 
 group "Dependencies"
 	include "GinX/vendor/GLFW"
@@ -40,6 +41,8 @@ project "GinX"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -56,7 +59,8 @@ project "GinX"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links
