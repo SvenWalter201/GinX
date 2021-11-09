@@ -6,22 +6,19 @@
 
 namespace GinX
 {
-
-	class Renderer
+	class Renderer2D
 	{
 	public:
 		static void Init();
+		static void BeginScene(OrthographicCamera& camera);
+		static void EndScene();
+		static void Flush();
+		static void ShutDown();
 
 		static void OnWindowResize(uint32_t width, uint32_t height);
 
-		static void BeginScene(OrthographicCamera& camera);
-		static void EndScene();
-
-		static void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray,
-			const glm::mat4& transform = glm::mat4(1.0f));
-		static void Flush();
-
-		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
+		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
+		static void DrawQuad(const glm::mat4& transform, const glm::vec4& color);
 	private:
 		struct SceneData
 		{
@@ -31,3 +28,4 @@ namespace GinX
 		static SceneData* m_SceneData;
 	};
 }
+	

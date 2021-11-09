@@ -25,7 +25,7 @@ namespace GinX
 	std::string OpenGLShader::ReadFile(const std::string& filePath)
 	{
 		std::string result;
-		std::ifstream in(filePath, std::ios::in, std::ios::binary);
+		std::ifstream in(filePath, std::ios::in | std::ios::binary);
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
@@ -70,9 +70,10 @@ namespace GinX
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
 		GLuint program = glCreateProgram();
-		std::vector<GLenum> glShaderIDs(shaderSources.size());
+		GX_CORE_ASSERT(shaderSources.size() <= 3, "Only 3 shaders are currently supported")
+		std::array<GLenum, 3> glShaderIDs;
 
-
+		int glShaderIDIndex = 0;
 		for (auto& kv : shaderSources)
 		{
 			GLenum shaderType = kv.first;
@@ -105,7 +106,7 @@ namespace GinX
 				break;
 			}
 			glAttachShader(program, shader);
-			glShaderIDs.push_back(shader);
+			glShaderIDs[glShaderIDIndex++] = shader;
 		}
 
 		// Link our program
@@ -151,9 +152,17 @@ namespace GinX
 		auto shaderSources = Preprocess(shaderSource);
 		GX_CORE_INFO(shaderSources.size());
 		Compile(shaderSources);
+
+		auto lastSlash = filePath.find_last_of("/\\");
+		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+		auto lastDot = filePath.rfind('.');
+		auto count = lastDot == std::string::npos ? filePath.size() - lastSlash : lastDot - lastSlash;
+		m_Name = filePath.substr(lastSlash, count);
+		GX_CORE_INFO(m_Name);
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
+		: m_Name(name)
 	{
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;

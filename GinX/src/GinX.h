@@ -20,8 +20,10 @@
 #include "GinX/Renderer/Buffer.h"
 #include "GinX/Renderer/Shader.h"
 #include "GinX/Renderer/Texture.h"
+#include "GinX/Renderer/Renderer2D.h"
 
 #include "GinX/Renderer/Camera.h"
+#include "GinX/Renderer/CameraController.h"
 //------------------------
 // --- ENTRY POINT -------
 #include "GinX/EntryPoint.h"
