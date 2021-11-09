@@ -1,8 +1,8 @@
 #include "gxpch.h"
 #include "GinX/Renderer/CameraController.h"
 
-#include "GinX/Input.h"
-#include "GinX/KeyCodes.h"
+#include "GinX/Core/Input.h"
+#include "GinX/Core/KeyCodes.h"
 
 namespace GinX
 {

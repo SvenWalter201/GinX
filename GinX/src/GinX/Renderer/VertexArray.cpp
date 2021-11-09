@@ -10,7 +10,7 @@ namespace GinX
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None: GX_CORE_ASSERT(false, "RenderAPI::NONE is currently not supported"); return nullptr;
-		case RendererAPI::API::OpenGL: GX_CORE_TRACE("??????"); return CreateRef<OpenGLVertexArray>();
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexArray>();
 		}
 
 		GX_CORE_ASSERT(false, "Unknown RendererAPI");

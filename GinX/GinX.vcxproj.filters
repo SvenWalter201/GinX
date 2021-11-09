@@ -60,16 +60,16 @@
     <ClInclude Include="src\GinX.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Application.h">
+    <ClInclude Include="src\GinX\Core\Application.h">
       <Filter>src\GinX</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Core.h">
+    <ClInclude Include="src\GinX\Core\Core.h">
       <Filter>src\GinX</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Core\Timestep.h">
       <Filter>src\GinX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\EntryPoint.h">
+    <ClInclude Include="src\GinX\Core\EntryPoint.h">
       <Filter>src\GinX</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Events\ApplicationEvent.h">
@@ -87,22 +87,22 @@
     <ClInclude Include="src\GinX\ImGui\ImGuiLayer.h">
       <Filter>src\GinX\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Input.h">
+    <ClInclude Include="src\GinX\Core\Input.h">
       <Filter>src\GinX</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\KeyCodes.h">
+    <ClInclude Include="src\GinX\Core\KeyCodes.h">
       <Filter>src\GinX</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Layers\Layer.h">
+    <ClInclude Include="src\GinX\Core\Layer.h">
       <Filter>src\GinX\Layers</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Layers\LayerStack.h">
+    <ClInclude Include="src\GinX\Core\LayerStack.h">
       <Filter>src\GinX\Layers</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Log.h">
+    <ClInclude Include="src\GinX\Core\Log.h">
       <Filter>src\GinX</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\MouseButtonCodes.h">
+    <ClInclude Include="src\GinX\Core\MouseButtonCodes.h">
       <Filter>src\GinX</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Renderer\Buffer.h">
@@ -132,7 +132,7 @@
     <ClInclude Include="src\GinX\Renderer\VertexArray.h">
       <Filter>src\GinX\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Window.h">
+    <ClInclude Include="src\GinX\Core\Window.h">
       <Filter>src\GinX</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
@@ -1414,7 +1414,7 @@
     <ClInclude Include="src\GinX\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\GinX\Application.cpp">
+    <ClCompile Include="src\GinX\Core\Application.cpp">
       <Filter>src\GinX</Filter>
     </ClCompile>
     <ClCompile Include="src\GinX\ImGui\ImGuiBuild.cpp">
@@ -1423,13 +1423,13 @@
     <ClCompile Include="src\GinX\ImGui\ImGuiLayer.cpp">
       <Filter>src\GinX\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\GinX\Layers\Layer.cpp">
+    <ClCompile Include="src\GinX\Core\Layer.cpp">
       <Filter>src\GinX\Layers</Filter>
     </ClCompile>
-    <ClCompile Include="src\GinX\Layers\LayerStack.cpp">
+    <ClCompile Include="src\GinX\Core\LayerStack.cpp">
       <Filter>src\GinX\Layers</Filter>
     </ClCompile>
-    <ClCompile Include="src\GinX\Log.cpp">
+    <ClCompile Include="src\GinX\Core\Log.cpp">
       <Filter>src\GinX</Filter>
     </ClCompile>
     <ClCompile Include="src\GinX\Renderer\Buffer.cpp">

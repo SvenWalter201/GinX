@@ -1,8 +1,8 @@
 
 #include "gxpch.h"
 #include "Application.h"
-#include "GinX/Log.h"
-#include "GinX/Input.h"
+#include "GinX/Core/Log.h"
+#include "GinX/Core/Input.h"
 #include "GinX/Renderer/Renderer.h"
 #include <GLFW/glfw3.h>
 namespace GinX {

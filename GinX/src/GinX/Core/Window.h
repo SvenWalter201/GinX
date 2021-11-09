@@ -2,7 +2,7 @@
 
 #include "gxpch.h"
 
-#include "GinX/Core.h"
+#include "GinX/Core/Core.h"
 #include "GinX/Events/Event.h"
 
 namespace GinX

@@ -141,21 +141,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\GinX.h" />
-    <ClInclude Include="src\GinX\Application.h" />
-    <ClInclude Include="src\GinX\Core.h" />
+    <ClInclude Include="src\GinX\Core\Application.h" />
+    <ClInclude Include="src\GinX\Core\Core.h" />
     <ClInclude Include="src\GinX\Core\Timestep.h" />
-    <ClInclude Include="src\GinX\EntryPoint.h" />
+    <ClInclude Include="src\GinX\Core\EntryPoint.h" />
     <ClInclude Include="src\GinX\Events\ApplicationEvent.h" />
     <ClInclude Include="src\GinX\Events\Event.h" />
     <ClInclude Include="src\GinX\Events\KeyEvent.h" />
     <ClInclude Include="src\GinX\Events\MouseEvent.h" />
     <ClInclude Include="src\GinX\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\GinX\Input.h" />
-    <ClInclude Include="src\GinX\KeyCodes.h" />
-    <ClInclude Include="src\GinX\Layers\Layer.h" />
-    <ClInclude Include="src\GinX\Layers\LayerStack.h" />
-    <ClInclude Include="src\GinX\Log.h" />
-    <ClInclude Include="src\GinX\MouseButtonCodes.h" />
+    <ClInclude Include="src\GinX\Core\Input.h" />
+    <ClInclude Include="src\GinX\Core\KeyCodes.h" />
+    <ClInclude Include="src\GinX\Core\Layer.h" />
+    <ClInclude Include="src\GinX\Core\LayerStack.h" />
+    <ClInclude Include="src\GinX\Core\Log.h" />
+    <ClInclude Include="src\GinX\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\GinX\Renderer\Buffer.h" />
     <ClInclude Include="src\GinX\Renderer\Camera.h" />
     <ClInclude Include="src\GinX\Renderer\GraphicsContext.h" />
@@ -167,7 +167,7 @@
     <ClInclude Include="src\GinX\Renderer\Shader.h" />
     <ClInclude Include="src\GinX\Renderer\Texture.h" />
     <ClInclude Include="src\GinX\Renderer\VertexArray.h" />
-    <ClInclude Include="src\GinX\Window.h" />
+    <ClInclude Include="src\GinX\Core\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -595,12 +595,12 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\GinX\Application.cpp" />
+    <ClCompile Include="src\GinX\Core\Application.cpp" />
     <ClCompile Include="src\GinX\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\GinX\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\GinX\Layers\Layer.cpp" />
-    <ClCompile Include="src\GinX\Layers\LayerStack.cpp" />
-    <ClCompile Include="src\GinX\Log.cpp" />
+    <ClCompile Include="src\GinX\Core\Layer.cpp" />
+    <ClCompile Include="src\GinX\Core\LayerStack.cpp" />
+    <ClCompile Include="src\GinX\Core\Log.cpp" />
     <ClCompile Include="src\GinX\Renderer\Buffer.cpp" />
     <ClCompile Include="src\GinX\Renderer\Camera.cpp" />
     <ClCompile Include="src\GinX\Renderer\CameraController.cpp" />

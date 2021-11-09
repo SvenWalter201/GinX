@@ -1,7 +1,7 @@
 #pragma once
 
 #include "gxpch.h"
-#include "GinX/Core.h"
+#include "GinX/Core/Core.h"
 
 namespace GinX 
 {

@@ -1,6 +1,6 @@
 #include "gxpch.h"
 #include "WindowsInput.h"
-#include "GinX/Application.h"
+#include "GinX/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace GinX

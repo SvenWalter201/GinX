@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "GinX/Log.h"
+#include "GinX/Core/Log.h"
 
 #ifdef GX_PLATFORM_WINDOWS
 	#include <Windows.h>

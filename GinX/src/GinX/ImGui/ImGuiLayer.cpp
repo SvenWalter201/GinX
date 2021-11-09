@@ -5,7 +5,7 @@
 #include "../imgui/backends/imgui_impl_glfw.h"
 #include "../imgui/backends/imgui_impl_opengl3.h"
 
-#include "GinX/Application.h"
+#include "GinX/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>

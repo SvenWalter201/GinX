@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GinX/Input.h"
+#include "GinX/Core/Input.h"
 
 namespace GinX
 {

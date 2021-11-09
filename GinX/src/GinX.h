@@ -2,13 +2,13 @@
 
 // For use by GinX Applications
 
-#include "GinX/Application.h"
-#include "GinX/Layers/Layer.h"
-#include "GinX/Log.h"
+#include "GinX/Core/Application.h"
+#include "GinX/Core/Layer.h"
+#include "GinX/Core/Log.h"
 #include "GinX/ImGui/ImGuiLayer.h"
-#include "GinX/Input.h"
-#include "GinX/KeyCodes.h"
-#include "GinX/MouseButtonCodes.h"
+#include "GinX/Core/Input.h"
+#include "GinX/Core/KeyCodes.h"
+#include "GinX/Core/MouseButtonCodes.h"
 
 #include "GinX/Core/Timestep.h"
 
@@ -26,5 +26,5 @@
 #include "GinX/Renderer/CameraController.h"
 //------------------------
 // --- ENTRY POINT -------
-#include "GinX/EntryPoint.h"
+#include "GinX/Core/EntryPoint.h"
 //------------------------

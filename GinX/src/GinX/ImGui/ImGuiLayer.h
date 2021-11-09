@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GinX/Layers/Layer.h"
+#include "GinX/Core/Layer.h"
 #include "GinX/Events/ApplicationEvent.h"
 #include "GinX/Events/MouseEvent.h"
 #include "GinX/Events/KeyEvent.h"

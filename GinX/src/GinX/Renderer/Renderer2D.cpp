@@ -132,7 +132,6 @@ namespace GinX
 		std::static_pointer_cast<OpenGLShader>(s_Data.TextureShader)->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
 		s_Data.QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadCount * 6);
-		GX_CORE_TRACE("QuadCount: {0}", s_Data.QuadCount * 6);
 	}
 
 	void Renderer2D::ShutDown()

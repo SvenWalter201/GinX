@@ -3,9 +3,9 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "GinX/Layers/LayerStack.h"
-#include "Events/Event.h"
-#include "GinX/Window.h"
+#include "GinX/Core/LayerStack.h"
+#include "Ginx/Events/Event.h"
+#include "GinX/Core/Window.h"
 #include "GinX/Events/ApplicationEvent.h"
 
 #include "GinX/ImGui/ImGuiLayer.h"
