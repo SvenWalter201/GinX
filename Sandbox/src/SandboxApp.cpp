@@ -166,12 +166,6 @@ private:
 	GinX::Ref<GinX::VertexArray> m_SquareVA;
 	GinX::Ref<GinX::Texture2D> m_Texture2D;
 	GinX::Ref<GinX::Texture2D> m_TextureLogo2D;
-	//GinX::OrthographicCamera m_Camera;
-	//glm::vec3 m_cameraPosition;
-	//float m_CameraSpeed = 6.0f;
-	//float m_TriangleSpeed = 1.0f;
-	//float m_CameraRotation = 0.0f;
-	//float m_CameraRotationSpeed = 50.0f;
 
 	//glm::vec3 m_TrianglePosition;
 	glm::vec3 m_TriColorA = {0.8f, 0.2f, 0.3f};

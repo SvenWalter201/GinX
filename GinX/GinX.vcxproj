@@ -152,6 +152,7 @@
     <ClInclude Include="src\GinX\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\GinX\Core\Timestep.h" />
     <ClInclude Include="src\GinX\Core\Window.h" />
+    <ClInclude Include="src\GinX\CoreSystems\DataStructures\DynamicArray.h" />
     <ClInclude Include="src\GinX\CoreSystems\UnitTest.h" />
     <ClInclude Include="src\GinX\Events\ApplicationEvent.h" />
     <ClInclude Include="src\GinX\Events\Event.h" />
@@ -600,6 +601,7 @@
     <ClCompile Include="src\GinX\Core\Layer.cpp" />
     <ClCompile Include="src\GinX\Core\LayerStack.cpp" />
     <ClCompile Include="src\GinX\Core\Log.cpp" />
+    <ClCompile Include="src\GinX\CoreSystems\DataStructures\DynamicArray.cpp" />
     <ClCompile Include="src\GinX\CoreSystems\UnitTest.cpp" />
     <ClCompile Include="src\GinX\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\GinX\ImGui\ImGuiLayer.cpp" />

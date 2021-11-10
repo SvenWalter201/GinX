@@ -13,6 +13,9 @@
     <Filter Include="src\GinX\CoreSystems">
       <UniqueIdentifier>{22283410-0EB7-BDD9-B7D5-D1D4A343CE7F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GinX\CoreSystems\DataStructures">
+      <UniqueIdentifier>{8FFA269A-FBB3-9144-8413-AC1EF0CB47B4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\GinX\Events">
       <UniqueIdentifier>{B62EDFB7-22BA-4C7C-2BCB-CF7097D5A87C}</UniqueIdentifier>
     </Filter>
@@ -92,6 +95,9 @@
     </ClInclude>
     <ClInclude Include="src\GinX\Core\Window.h">
       <Filter>src\GinX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\CoreSystems\DataStructures\DynamicArray.h">
+      <Filter>src\GinX\CoreSystems\DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\CoreSystems\UnitTest.h">
       <Filter>src\GinX\CoreSystems</Filter>
@@ -1432,6 +1438,9 @@
     </ClCompile>
     <ClCompile Include="src\GinX\Core\Log.cpp">
       <Filter>src\GinX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\CoreSystems\DataStructures\DynamicArray.cpp">
+      <Filter>src\GinX\CoreSystems\DataStructures</Filter>
     </ClCompile>
     <ClCompile Include="src\GinX\CoreSystems\UnitTest.cpp">
       <Filter>src\GinX\CoreSystems</Filter>

@@ -1,8 +1,12 @@
 #pragma once
 
+
+
 // For use by GinX Applications
 
 #include "GinX/Core/Application.h"
+
+#include "GinX/CoreSystems/DataStructures/DynamicArray.h"
 #include "GinX/Core/Layer.h"
 #include "GinX/Core/Log.h"
 #include "GinX/ImGui/ImGuiLayer.h"
@@ -28,3 +32,4 @@
 // --- ENTRY POINT -------
 #include "GinX/Core/EntryPoint.h"
 //------------------------
+
