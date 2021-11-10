@@ -10,14 +10,14 @@
     <Filter Include="src\GinX\Core">
       <UniqueIdentifier>{AACA9F4B-168B-1B82-DFC5-64FF4B45605E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GinX\CoreSystems">
+      <UniqueIdentifier>{22283410-0EB7-BDD9-B7D5-D1D4A343CE7F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\GinX\Events">
       <UniqueIdentifier>{B62EDFB7-22BA-4C7C-2BCB-CF7097D5A87C}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GinX\ImGui">
       <UniqueIdentifier>{BCE503C0-A8B3-F7C5-9147-68EC7DB4D32A}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\GinX\Layers">
-      <UniqueIdentifier>{9119C2C6-FDA4-2F8B-06B6-B27F72C08B8B}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GinX\Renderer">
       <UniqueIdentifier>{F8C26023-64D9-5EB9-AD50-EADA19A62F41}</UniqueIdentifier>
@@ -61,16 +61,40 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Core\Application.h">
-      <Filter>src\GinX</Filter>
+      <Filter>src\GinX\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Core\Core.h">
-      <Filter>src\GinX</Filter>
+      <Filter>src\GinX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Core\EntryPoint.h">
+      <Filter>src\GinX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Core\Input.h">
+      <Filter>src\GinX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Core\KeyCodes.h">
+      <Filter>src\GinX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Core\Layer.h">
+      <Filter>src\GinX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Core\LayerStack.h">
+      <Filter>src\GinX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Core\Log.h">
+      <Filter>src\GinX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Core\MouseButtonCodes.h">
+      <Filter>src\GinX\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Core\Timestep.h">
       <Filter>src\GinX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Core\EntryPoint.h">
-      <Filter>src\GinX</Filter>
+    <ClInclude Include="src\GinX\Core\Window.h">
+      <Filter>src\GinX\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\CoreSystems\UnitTest.h">
+      <Filter>src\GinX\CoreSystems</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Events\ApplicationEvent.h">
       <Filter>src\GinX\Events</Filter>
@@ -87,28 +111,13 @@
     <ClInclude Include="src\GinX\ImGui\ImGuiLayer.h">
       <Filter>src\GinX\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Core\Input.h">
-      <Filter>src\GinX</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GinX\Core\KeyCodes.h">
-      <Filter>src\GinX</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GinX\Core\Layer.h">
-      <Filter>src\GinX\Layers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GinX\Core\LayerStack.h">
-      <Filter>src\GinX\Layers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GinX\Core\Log.h">
-      <Filter>src\GinX</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GinX\Core\MouseButtonCodes.h">
-      <Filter>src\GinX</Filter>
-    </ClInclude>
     <ClInclude Include="src\GinX\Renderer\Buffer.h">
       <Filter>src\GinX\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Renderer\Camera.h">
+      <Filter>src\GinX\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Renderer\CameraController.h">
       <Filter>src\GinX\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Renderer\GraphicsContext.h">
@@ -118,6 +127,9 @@
       <Filter>src\GinX\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Renderer\Renderer.h">
+      <Filter>src\GinX\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Renderer\Renderer2D.h">
       <Filter>src\GinX\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Renderer\RendererAPI.h">
@@ -131,9 +143,6 @@
     </ClInclude>
     <ClInclude Include="src\GinX\Renderer\VertexArray.h">
       <Filter>src\GinX\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GinX\Core\Window.h">
-      <Filter>src\GinX</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1410,12 +1419,22 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Renderer\CameraController.h" />
-    <ClInclude Include="src\GinX\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GinX\Core\Application.cpp">
-      <Filter>src\GinX</Filter>
+      <Filter>src\GinX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\Core\Layer.cpp">
+      <Filter>src\GinX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\Core\LayerStack.cpp">
+      <Filter>src\GinX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\Core\Log.cpp">
+      <Filter>src\GinX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\CoreSystems\UnitTest.cpp">
+      <Filter>src\GinX\CoreSystems</Filter>
     </ClCompile>
     <ClCompile Include="src\GinX\ImGui\ImGuiBuild.cpp">
       <Filter>src\GinX\ImGui</Filter>
@@ -1423,25 +1442,22 @@
     <ClCompile Include="src\GinX\ImGui\ImGuiLayer.cpp">
       <Filter>src\GinX\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\GinX\Core\Layer.cpp">
-      <Filter>src\GinX\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GinX\Core\LayerStack.cpp">
-      <Filter>src\GinX\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GinX\Core\Log.cpp">
-      <Filter>src\GinX</Filter>
-    </ClCompile>
     <ClCompile Include="src\GinX\Renderer\Buffer.cpp">
       <Filter>src\GinX\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\GinX\Renderer\Camera.cpp">
       <Filter>src\GinX\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\GinX\Renderer\CameraController.cpp">
+      <Filter>src\GinX\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\GinX\Renderer\RenderCommand.cpp">
       <Filter>src\GinX\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\GinX\Renderer\Renderer.cpp">
+      <Filter>src\GinX\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\Renderer\Renderer2D.cpp">
       <Filter>src\GinX\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\GinX\Renderer\RendererAPI.cpp">
@@ -1486,10 +1502,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\GinX\Renderer\CameraController.cpp" />
-    <ClCompile Include="src\GinX\Renderer\Renderer2D.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="assets\Texture.glsl" />
   </ItemGroup>
 </Project>

@@ -24,6 +24,7 @@ group "Dependencies"
 	include "GinX/vendor/imgui"
 group ""
 
+
 project "GinX"
 	location "GinX"
 	kind "StaticLib"
@@ -120,6 +121,58 @@ project "Sandbox"
 		"GinX/vendor",
 		"%{IncludeDir.glm}"
 
+	}
+
+	links
+	{
+		"GinX"
+	}
+
+	filter "system:windows"		
+		systemversion "latest"
+
+		defines
+		{
+			"GX_PLATFORM_WINDOWS"
+		}	
+
+	filter "configurations:Debug"
+		defines "GX_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "GX_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "GX_DIST"
+		runtime "Release"
+		optimize "on"
+
+project "GinXUnitTest"
+	location "GinXUnitTest"
+	kind "SharedLib"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "On"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"GinX/vendor/spdlog/include",
+		"GinX/src",
+		"GinX/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
