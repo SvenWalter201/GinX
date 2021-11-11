@@ -58,6 +58,7 @@ namespace GinX
 		ImGui::DestroyContext();
 	}
 
+	/*
 	void ImGuiLayer::OnImGuiRender() 
 	{
 		static bool show = true;
@@ -65,6 +66,7 @@ namespace GinX
 
 
 	}
+	*/
 
 	void ImGuiLayer::Begin() 
 	{

@@ -16,6 +16,9 @@
     <Filter Include="src\GinX\CoreSystems\DataStructures">
       <UniqueIdentifier>{8FFA269A-FBB3-9144-8413-AC1EF0CB47B4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GinX\ECS">
+      <UniqueIdentifier>{5C18FDCB-487B-8C70-F100-C526DD4258F3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\GinX\Events">
       <UniqueIdentifier>{B62EDFB7-22BA-4C7C-2BCB-CF7097D5A87C}</UniqueIdentifier>
     </Filter>
@@ -24,6 +27,9 @@
     </Filter>
     <Filter Include="src\GinX\Renderer">
       <UniqueIdentifier>{F8C26023-64D9-5EB9-AD50-EADA19A62F41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GinX\Scene">
+      <UniqueIdentifier>{AFDDB3C0-9BAB-A7C6-843F-18ED70AC832B}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
@@ -36,6 +42,9 @@
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\EnTT">
+      <UniqueIdentifier>{7DF066C1-E9A5-DFB6-729A-D98DDE4ED6BA}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor\glm">
       <UniqueIdentifier>{829FC5A8-6E57-07F6-D75E-E051C335A2E6}</UniqueIdentifier>
@@ -99,8 +108,14 @@
     <ClInclude Include="src\GinX\CoreSystems\DataStructures\DynamicArray.h">
       <Filter>src\GinX\CoreSystems\DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\CoreSystems\UnitTest.h">
-      <Filter>src\GinX\CoreSystems</Filter>
+    <ClInclude Include="src\GinX\CoreSystems\DataStructures\Map.h">
+      <Filter>src\GinX\CoreSystems\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\ECS\Entity.h">
+      <Filter>src\GinX\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\ECS\Manager.h">
+      <Filter>src\GinX\ECS</Filter>
     </ClInclude>
     <ClInclude Include="src\GinX\Events\ApplicationEvent.h">
       <Filter>src\GinX\Events</Filter>
@@ -150,6 +165,9 @@
     <ClInclude Include="src\GinX\Renderer\VertexArray.h">
       <Filter>src\GinX\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\GinX\Scene\Scene.h">
+      <Filter>src\GinX\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -176,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="src\gxpch.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\EnTT\entt.hpp">
+      <Filter>vendor\EnTT</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\common.hpp">
       <Filter>vendor\glm\glm</Filter>
@@ -1439,11 +1460,8 @@
     <ClCompile Include="src\GinX\Core\Log.cpp">
       <Filter>src\GinX\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\GinX\CoreSystems\DataStructures\DynamicArray.cpp">
-      <Filter>src\GinX\CoreSystems\DataStructures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GinX\CoreSystems\UnitTest.cpp">
-      <Filter>src\GinX\CoreSystems</Filter>
+    <ClCompile Include="src\GinX\ECS\Manager.cpp">
+      <Filter>src\GinX\ECS</Filter>
     </ClCompile>
     <ClCompile Include="src\GinX\ImGui\ImGuiBuild.cpp">
       <Filter>src\GinX\ImGui</Filter>
@@ -1480,6 +1498,9 @@
     </ClCompile>
     <ClCompile Include="src\GinX\Renderer\VertexArray.cpp">
       <Filter>src\GinX\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\Scene\Scene.cpp">
+      <Filter>src\GinX\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>

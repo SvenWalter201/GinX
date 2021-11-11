@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>gxpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GX_PLATFORM_WINDOWS;GX_BUILD_DLL;GLFW_INCLUDE_NONE;GX_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\EnTT;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>gxpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GX_PLATFORM_WINDOWS;GX_BUILD_DLL;GLFW_INCLUDE_NONE;GX_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\EnTT;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>gxpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GX_PLATFORM_WINDOWS;GX_BUILD_DLL;GLFW_INCLUDE_NONE;GX_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\EnTT;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -153,7 +153,9 @@
     <ClInclude Include="src\GinX\Core\Timestep.h" />
     <ClInclude Include="src\GinX\Core\Window.h" />
     <ClInclude Include="src\GinX\CoreSystems\DataStructures\DynamicArray.h" />
-    <ClInclude Include="src\GinX\CoreSystems\UnitTest.h" />
+    <ClInclude Include="src\GinX\CoreSystems\DataStructures\Map.h" />
+    <ClInclude Include="src\GinX\ECS\Entity.h" />
+    <ClInclude Include="src\GinX\ECS\Manager.h" />
     <ClInclude Include="src\GinX\Events\ApplicationEvent.h" />
     <ClInclude Include="src\GinX\Events\Event.h" />
     <ClInclude Include="src\GinX\Events\KeyEvent.h" />
@@ -170,6 +172,7 @@
     <ClInclude Include="src\GinX\Renderer\Shader.h" />
     <ClInclude Include="src\GinX\Renderer\Texture.h" />
     <ClInclude Include="src\GinX\Renderer\VertexArray.h" />
+    <ClInclude Include="src\GinX\Scene\Scene.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -179,6 +182,7 @@
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\gxpch.h" />
+    <ClInclude Include="vendor\EnTT\entt.hpp" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -601,8 +605,7 @@
     <ClCompile Include="src\GinX\Core\Layer.cpp" />
     <ClCompile Include="src\GinX\Core\LayerStack.cpp" />
     <ClCompile Include="src\GinX\Core\Log.cpp" />
-    <ClCompile Include="src\GinX\CoreSystems\DataStructures\DynamicArray.cpp" />
-    <ClCompile Include="src\GinX\CoreSystems\UnitTest.cpp" />
+    <ClCompile Include="src\GinX\ECS\Manager.cpp" />
     <ClCompile Include="src\GinX\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\GinX\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\GinX\Renderer\Buffer.cpp" />
@@ -615,6 +618,7 @@
     <ClCompile Include="src\GinX\Renderer\Shader.cpp" />
     <ClCompile Include="src\GinX\Renderer\Texture.cpp" />
     <ClCompile Include="src\GinX\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\GinX\Scene\Scene.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
@@ -642,4 +646,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project>
+</Project> 

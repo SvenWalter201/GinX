@@ -15,7 +15,7 @@ namespace GinX
 
 	struct Renderer2DData
 	{
-		const uint32_t MAX_QUADS = 10000;
+		const uint32_t MAX_QUADS = 100000;
 		const uint32_t MAX_VERTICES = MAX_QUADS * 4;
 		const uint32_t MAX_INDICES = MAX_QUADS * 6;
 

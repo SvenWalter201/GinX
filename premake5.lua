@@ -17,6 +17,7 @@ IncludeDir["Glad"] = "GinX/vendor/Glad/include"
 IncludeDir["ImGui"] = "GinX/vendor/imgui"
 IncludeDir["glm"] = "GinX/vendor/glm"
 IncludeDir["stb_image"] = "GinX/vendor/stb_image"
+IncludeDir["EnTT"] = "GinX/vendor/EnTT"
 
 group "Dependencies"
 	include "GinX/vendor/GLFW"
@@ -45,7 +46,8 @@ project "GinX"
 		"%{prj.name}/vendor/stb_image/**.h",
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
+		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/EnTT/entt.hpp"
 	}
 
 	defines
@@ -61,7 +63,8 @@ project "GinX"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.EnTT}"
 	}
 
 	links
@@ -119,8 +122,8 @@ project "Sandbox"
 		"GinX/vendor/spdlog/include",
 		"GinX/src",
 		"GinX/vendor",
-		"%{IncludeDir.glm}"
-
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.EnTT}"
 	}
 
 	links

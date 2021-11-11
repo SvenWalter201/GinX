@@ -7,6 +7,11 @@
 #include "GinX/Core/Application.h"
 
 #include "GinX/CoreSystems/DataStructures/DynamicArray.h"
+#include "GinX/CoreSystems/DataStructures/Map.h"
+
+#include "GinX/ECS/Manager.h"
+#include "GinX/Scene/Scene.h"
+
 #include "GinX/Core/Layer.h"
 #include "GinX/Core/Log.h"
 #include "GinX/ImGui/ImGuiLayer.h"
@@ -28,8 +33,4 @@
 
 #include "GinX/Renderer/Camera.h"
 #include "GinX/Renderer/CameraController.h"
-//------------------------
-// --- ENTRY POINT -------
-#include "GinX/Core/EntryPoint.h"
-//------------------------
 
