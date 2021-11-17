@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace GinX
 {
 	template<typename T>
@@ -10,17 +12,61 @@ namespace GinX
 	public:
 
 		DynamicArray()
-			: m_CurrentSize(0), m_CurrentCapacity(0), m_Values(new T[0])
+			: m_CurrentSize(0), m_CurrentCapacity(1), m_Values(new T[1])
 		{
-
+			memset(m_Values, 0, sizeof(T));
 		}
+
 		DynamicArray(uint32_t initialCapacity)
 			: m_CurrentSize(0), m_CurrentCapacity(initialCapacity), m_Values(new T[initialCapacity])
 		{
-
+			memset(m_Values, 0, initialCapacity * sizeof(T));
 		}
 
-		~DynamicArray() {}
+		DynamicArray(const DynamicArray<T>& other) 
+		{
+			m_CurrentSize = other.m_CurrentSize;
+			m_CurrentCapacity = other.m_CurrentCapacity;
+			m_Values = new T[m_CurrentCapacity];
+			memcpy(m_Values, other.m_Values, m_CurrentSize * sizeof(T));
+		}
+
+		DynamicArray(DynamicArray<T>&& other) noexcept
+		{
+			m_CurrentSize = other.m_CurrentSize;
+			m_CurrentCapacity = other.m_CurrentCapacity;
+			m_Values = other.m_Values;
+			other.m_Values = nullptr;
+		}
+
+		DynamicArray<T>& operator=(const DynamicArray<T>& other) 
+		{
+			if (this == &other) return *this;
+			if (m_Values != nullptr) delete[] m_Values;
+
+			m_CurrentSize = other.m_CurrentSize;
+			m_CurrentCapacity = other.m_CurrentCapacity;
+			m_Values = new T[m_CurrentCapacity];
+			memcpy(m_Values, other.m_Values, m_CurrentSize * sizeof(T));
+			return *this;
+		}
+
+		DynamicArray<T>& operator=(DynamicArray<T>&& other) noexcept
+		{
+			if (this == &other) return *this;
+			if (m_Values != nullptr) delete[] m_Values;
+
+			m_CurrentSize = other.m_CurrentSize;
+			m_CurrentCapacity = other.m_CurrentCapacity;
+			m_Values = other.m_Values;
+			other.m_Values = nullptr;
+			return *this;
+		}
+
+		~DynamicArray() 
+		{
+			delete m_Values;
+		}
 
 		T& operator [](uint32_t index) {
 			return m_Values[index];
@@ -47,7 +93,7 @@ namespace GinX
 				new (newValues + i) T(std::move(m_Values[i]));
 			}
 
-			delete m_Values;
+			delete[] m_Values;
 			m_Values = newValues;
 		}
 
@@ -68,7 +114,7 @@ namespace GinX
 				}
 
 				new (newValues + m_CurrentSize - 1) T(std::move(element));
-				delete m_Values;
+				delete[] m_Values;
 				m_Values = newValues;
 			}
 			m_Values[m_CurrentSize - 1] = element;
@@ -85,7 +131,7 @@ namespace GinX
 
 		}
 
-		void Delete(uint32_t index)
+		void Del(uint32_t index)
 		{
 			--m_CurrentSize;
 
@@ -102,6 +148,8 @@ namespace GinX
 		inline uint32_t Reserved() { return m_CurrentCapacity - m_CurrentSize; }
 		inline T Get(uint32_t index) { return m_Values[index]; }
 
+		inline void* GetDataPointer() { return m_Values; }
+
 		void* operator new(size_t size) // regular new
 		{
 			return ::new char[sizeof(T)];
@@ -109,6 +157,12 @@ namespace GinX
 
 		void* operator new(size_t size, void* pWhere) {
 			return pWhere;
+		}
+
+		void DynamicArray::print() const
+		{
+			for (size_t i = 0; i < m_CurrentSize; ++i)
+				printf("data[%d] %d\n", i, m_pData[i]);
 		}
 
 	private:

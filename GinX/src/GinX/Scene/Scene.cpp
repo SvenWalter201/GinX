@@ -3,11 +3,14 @@
 
 #include <glm/glm.hpp>
 
+#include "Entity.h"
+
 namespace GinX
 {
 
-	Scene::Scene()
+	Scene::Scene() : m_Registry(entt::registry())
 	{
+	/*
 		struct SomeThirdComponent
 		{
 			float X = 0.0f;
@@ -63,19 +66,25 @@ namespace GinX
 		//TransformComponent& transform = m_Registry.get<TransformComponent>(entity);
 
 		auto view = m_Registry.view<TransformComponent>();
-		uint32_t size = view.size();
+		size_t size = view.size();
 		GX_CORE_TRACE("{0} Components have Transform", size);
 
 		auto group = m_Registry.group<TransformComponent>(entt::get<QuadRendererComponent, SomeThirdComponent>);
-		uint32_t groupSize = group.size();
+		size_t groupSize = group.size();
 		GX_CORE_TRACE("{0} Components have Transform and QuadRenderer", groupSize);
 
 		m_Registry.clear();
+		*/
 	}
 
 	Scene::~Scene()
 	{
 
+	}
+
+	GinX::Entity Scene::CreateEntity()
+	{
+		return Entity(m_Registry.create(), this);
 	}
 
 }

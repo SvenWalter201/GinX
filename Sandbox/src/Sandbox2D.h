@@ -35,4 +35,5 @@ private:
 	};
 
 	std::vector<ProfileResult> m_ProfileResults;
+	std::vector<GinX::System*> m_Systems;
 };

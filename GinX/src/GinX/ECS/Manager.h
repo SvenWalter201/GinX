@@ -1,5 +1,6 @@
 #pragma once
 
+/*
 #include <array>
 #include <vector>
 #include <bitset>
@@ -74,4 +75,6 @@ namespace GinX
 		std::array<Transform, maxEntities>* m_Transforms;
 		std::array<QuadRenderer, maxEntities>* m_QuadRenderers;
 	};
-}
+
+	
+}*/

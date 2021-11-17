@@ -35,7 +35,8 @@ namespace GinX
 		uint32_t Size;
 		bool Normalized;
 
-		BufferElement() {
+		BufferElement()
+			: Name(""), Offset(0), Size(0), Normalized(false) {
 
 		}
 

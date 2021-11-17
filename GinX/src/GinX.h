@@ -11,6 +11,9 @@
 
 #include "GinX/ECS/Manager.h"
 #include "GinX/Scene/Scene.h"
+#include "GinX/Scene/Entity.h"
+#include "GinX/Scene/Components.h"
+#include "GinX/Scene/RenderingSystem.h"
 
 #include "GinX/Core/Layer.h"
 #include "GinX/Core/Log.h"

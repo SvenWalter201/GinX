@@ -1,6 +1,6 @@
 #include "gxpch.h"
 #include "Manager.h"
-
+/*
 namespace GinX
 {
 	static uint32_t globalEntityID = 0;
@@ -57,3 +57,4 @@ namespace GinX
 		m_Entities->erase(id);
 	}
 }
+*/

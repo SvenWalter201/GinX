@@ -5,6 +5,9 @@
 #include "imgui/imgui.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "Platform/OpenGL/OpenGLShader.h"
+#include <random>
+
+using namespace GinX::Component;
 
 template<typename Fn>
 class Timer
@@ -106,7 +109,29 @@ Sandbox2D::Sandbox2D() :
 
 	GinX::Renderer2D::Init();
 
-	//GinX::Manager mng;
+	{
+
+		for (uint32_t i = 0; i < 100; i++)
+		{
+			GinX::Entity e = m_Scene.CreateEntity();
+			float x = ((std::rand() / (float)RAND_MAX) - 0.5f) * 2.0f;
+			float y = ((std::rand() / (float)RAND_MAX) - 0.5f) * 2.0f;
+			e.AddComponent<TransformComponent>(TransformComponent(glm::vec3(x, y, 0.0f), glm::vec3(0.3f, 0.3f, 0.3f)));
+			
+			float ms = (std::rand() / (float)RAND_MAX) * 3.0f;
+			e.AddComponent<MoveState>(MoveState(ms));
+
+			float r = (std::rand() / (float)RAND_MAX);
+			float g = (std::rand() / (float)RAND_MAX);
+			float b = (std::rand() / (float)RAND_MAX);
+
+			e.AddComponent<SpriteRenderer>(SpriteRenderer(glm::vec4(r, g, b, 1.0f)));
+
+		}
+	}
+
+	m_Systems.push_back(new GinX::MoveRandomSystem(&m_Scene));
+	m_Systems.push_back(new GinX::RenderingSystem(&m_Scene));
 }
 
 void Sandbox2D::OnAttach()
@@ -123,6 +148,8 @@ void Sandbox2D::OnDetach()
 
 void Sandbox2D::OnUpdate(GinX::TimeStep ts)
 {
+
+
 	float time = ts;
 
 	PROFILE_SCOPE("Sandbox2D::OnUpdate");
@@ -132,10 +159,24 @@ void Sandbox2D::OnUpdate(GinX::TimeStep ts)
 	GinX::RenderCommand::SetClearColor({ 0.2f, 0.2f, 0.2f, 1 });
 	GinX::RenderCommand::Clear();
 
+
 	GinX::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	glm::vec2 scale = { 0.01f, 0.01f };
+	{
+		PROFILE_SCOPE("Updating Systems");
+		//update systems in order
+		int i = 0;
+		for (auto& system : m_Systems)
+		{
+			PROFILE_SCOPE(system->GetName());
+			system->OnUpdate(ts);
+			++i;
+		}
+	}
 
+
+	glm::vec2 scale = { 0.01f, 0.01f };
+	/*
 	{
 		PROFILE_SCOPE("Batch together Quads");
 		for (uint32_t x = 0; x < 100; x++)
@@ -148,6 +189,7 @@ void Sandbox2D::OnUpdate(GinX::TimeStep ts)
 			}
 		}
 	}
+	*/
 	//GinX::Renderer2D::DrawQuad({ -0.5f, 0.0f }, { 0.3f, 0.2f }, { 0.3f, 0.8f, 0.2f, 1.0f });
 	//GinX::Renderer2D::DrawQuad({ 0.0f, +0.5f }, { 0.8f, 0.9f }, { 0.2f, 0.3f, 0.8f, 1.0f });
 	{
@@ -215,8 +257,8 @@ void Sandbox2D::OnImGuiRender()
 	for (auto& result : m_ProfileResults)
 	{
 		char label[50];
-		strcpy(label, "%.3fms ");
-		strcat(label, result.Name);
+		strcpy_s(label, "%.3fms ");
+		strcat_s(label, result.Name);
 		ImGui::Text(label, result.Time);
 	}
 

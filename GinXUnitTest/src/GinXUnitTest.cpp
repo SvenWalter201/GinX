@@ -23,7 +23,50 @@ namespace GinXUnitTest
 	TEST_CLASS(GinXUnitTest)
 	{
 	public:
-	
+
+		int GetWrapper(GinX::DynamicArray<int> dynamicArray)
+		{
+			return dynamicArray.Get(0);
+		}
+
+		TEST_METHOD(DynamicArray_copyAndMove) 
+		{
+			GinX::DynamicArray<int> dynamicArray(3);
+			dynamicArray.Append(3);
+			int rWrapper = GetWrapper(dynamicArray);
+			int r = dynamicArray.Get(0);
+
+			Assert::AreEqual(rWrapper, 3);
+			Assert::AreEqual(r, 3);
+
+
+			GinX::DynamicArray<int> dynamicArray2(3);
+			dynamicArray2.Append(4);
+			
+			//move dynamic array2 into the function, invalidating the original
+			int rWrapper2 = GetWrapper(std::move(dynamicArray2));
+			
+
+			Assert::AreEqual(rWrapper2, 4);
+
+			void* p = dynamicArray2.GetDataPointer();
+
+			//check if original is invalidated correctly
+			Assert::AreEqual(p, (void*)nullptr);
+		}
+
+		TEST_METHOD(DynamicArray_assignments) 
+		{
+			GinX::DynamicArray<float> dynamicArray1(2);
+			dynamicArray1.Append(0.03f);
+			GinX::DynamicArray<float> dynamicArray2;
+			dynamicArray2 = dynamicArray1;
+			GinX::DynamicArray<float> dynamicArray3;
+			dynamicArray3 = std::move(dynamicArray2);
+
+			Assert::AreEqual(dynamicArray3.Get(0), 0.03f);
+		}
+
 		TEST_METHOD(DynamicArray_char)
 		{
 			GinX::DynamicArray<char> dynamicArray(3);
@@ -56,17 +99,17 @@ namespace GinXUnitTest
 			Assert::AreEqual(index3, dynamicArray.Get(3));
 			Assert::AreEqual(index4, dynamicArray.Get(4));
 
-			dynamicArray.Delete(2);
+			dynamicArray.Del(2);
 			Assert::AreEqual(index0, dynamicArray.Get(0));
 			Assert::AreEqual(index1, dynamicArray.Get(1));
 			Assert::AreEqual(index3, dynamicArray.Get(2));
 			Assert::AreEqual(index4, dynamicArray.Get(3));
 			//Assert::AreEqual('0', dynamicArray.Get(4));
 
-			dynamicArray.Delete(3);
+			dynamicArray.Del(3);
 			//Assert::AreEqual('0', dynamicArray.Get(3));
 
-			dynamicArray.Delete(0);
+			dynamicArray.Del(0);
 			Assert::AreEqual(index1, dynamicArray.Get(0));
 			Assert::AreEqual(index3, dynamicArray.Get(1));
 
@@ -194,17 +237,17 @@ namespace GinXUnitTest
 			Assert::AreEqual(index3, dynamicArray.Get(3));
 			Assert::AreEqual(index4, dynamicArray.Get(4));
 
-			dynamicArray.Delete(2);
+			dynamicArray.Del(2);
 			Assert::AreEqual(index0, dynamicArray.Get(0));
 			Assert::AreEqual(index1, dynamicArray.Get(1));
 			Assert::AreEqual(index3, dynamicArray.Get(2));
 			Assert::AreEqual(index4, dynamicArray.Get(3));
 			//Assert::AreEqual(0, dynamicArray.Get(4));
 
-			dynamicArray.Delete(3);
+			dynamicArray.Del(3);
 			//Assert::AreEqual(0, dynamicArray.Get(3));
 
-			dynamicArray.Delete(0);
+			dynamicArray.Del(0);
 			Assert::AreEqual(index1, dynamicArray.Get(0));
 			Assert::AreEqual(index3, dynamicArray.Get(1));
 
