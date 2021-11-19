@@ -149,8 +149,8 @@
     <ClInclude Include="src\GinX\Core\Layer.h" />
     <ClInclude Include="src\GinX\Core\LayerStack.h" />
     <ClInclude Include="src\GinX\Core\Log.h" />
-    <ClInclude Include="src\GinX\Core\MemoryManagement\MemoryManager.h" />
-    <ClInclude Include="src\GinX\Core\MemoryManagement\StackAllocator.h" />
+    <ClInclude Include="src\GinX\Core\MemoryManagement\Allocator.h" />
+    <ClInclude Include="src\GinX\Core\MemoryManagement\CustomAllocators.h" />
     <ClInclude Include="src\GinX\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\GinX\Core\Timestep.h" />
     <ClInclude Include="src\GinX\Core\Window.h" />
@@ -611,6 +611,8 @@
     <ClCompile Include="src\GinX\Core\Layer.cpp" />
     <ClCompile Include="src\GinX\Core\LayerStack.cpp" />
     <ClCompile Include="src\GinX\Core\Log.cpp" />
+    <ClCompile Include="src\GinX\Core\MemoryManagement\Allocator.cpp" />
+    <ClCompile Include="src\GinX\Core\MemoryManagement\CustomAllocators.cpp" />
     <ClCompile Include="src\GinX\ECS\Manager.cpp" />
     <ClCompile Include="src\GinX\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\GinX\ImGui\ImGuiLayer.cpp" />

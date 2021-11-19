@@ -6,17 +6,163 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace GinXUnitTest
 {
-	TEST_CLASS(GinXECSTest)
+	struct S1
+	{
+		float A, B, C; //size : 12 aligned Size: 16
+	};
+
+	struct S2
+	{
+		float A, B; //size : 8 aligned Size: 8
+	};
+
+	TEST_CLASS(GinXStackAllocatorTest)
 	{
 	public:
 
-		TEST_METHOD(ECS) 
+		TEST_METHOD(StackMarkers)
 		{
-			GinX::Manager m = GinX::Manager();
-			std::string name = "Player";
-			uint32_t id =  m.CreateEntity(name);
-			m.GetEntity(id);
-			Assert::AreEqual(name, m.GetEntity(id).GetName());
+			
+			auto stackAlloc = GinX::StackAllocator(25);
+			Assert::AreEqual(stackAlloc.GetStackSize(), (size_t)32,
+				L"SizeAlignment didn't work");
+			
+			S1* s1 = static_cast<S1*>(stackAlloc.AllocateMemory(sizeof(S1)));
+			if (s1 == nullptr)
+			{
+				Assert::IsFalse(true,
+					L"Not enough Stack-Size_s1");
+				return;
+			}
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)16,
+				L"Stack-Size is wrong");
+
+			new (s1) S1();
+
+			auto marker = stackAlloc.GetMarker();
+
+			S2* s2 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
+			if (s2 == nullptr)
+			{
+				Assert::IsFalse(true,
+					L"Not enough Stack-Size s2");
+				return;
+			}
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)24,
+				L"Stack-Size is wrong");
+			new (s2) S2();
+
+			S2* s2_1 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
+			if (s2_1 == nullptr)
+			{
+				Assert::IsFalse(true,
+					L"Not enough Stack-Size s2_1");
+				return;
+			}
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)32,
+				L"Stack-Size is wrong");
+			new (s2_1) S2();
+
+			stackAlloc.FreeToMarker(marker);
+			
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)16,
+				L"Stack-Size is wrong");
+			
+			S2* s2_2 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
+			if (s2_2 == nullptr)
+			{
+				Assert::IsFalse(true,
+					L"Not enough Stack-Size s2_2");
+				return;
+			}
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)24,
+				L"Stack-Size is wrong");
+			new (s2_2) S2();
+			
+			S2* s2_3 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
+			if (s2_3 == nullptr)
+			{
+				Assert::IsFalse(true,
+					L"Not enough Stack-Size s2_2");
+				return;
+			}
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)32,
+				L"Stack-Size is wrong");
+			new (s2_3) S2();
+			
+			stackAlloc.Wipe();
+
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)0,
+				L"Stack-Size is wrong");
+		}
+
+		TEST_METHOD(StackAlloc) 
+		{
+
+			auto stackAlloc = GinX::StackAllocator(33);
+			Assert::AreEqual(stackAlloc.GetStackSize(), (size_t)40,
+				L"SizeAlignment didn't work");
+
+			S1* s1 = static_cast<S1*>(stackAlloc.AllocateMemory(sizeof(S1)));
+			if (s1 == nullptr)
+			{
+				Assert::IsFalse(true,
+					L"Not enough Stack-Size_s1");
+				return;
+			}
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)16,
+				L"Stack-Size is wrong");
+
+			new (s1) S1();
+
+			S2* s2 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
+			if (s2 == nullptr)
+			{
+				Assert::IsFalse(true,
+					L"Not enough Stack-Size s2");
+				return;
+			}
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)24,
+				L"Stack-Size is wrong");
+			new (s2) S2();
+			
+			S2* s2_1 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
+			if (s2_1 == nullptr)
+			{
+				Assert::IsFalse(true,
+					L"Not enough Stack-Size s2_1");
+				return;
+			}
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)32,
+				L"Stack-Size is wrong");
+			new (s2_1) S2();
+			
+			S2* s2_2 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
+			if (s2_2 == nullptr)
+			{
+				Assert::IsFalse(true,
+					L"Not enough Stack-Size s2_2");
+				return;
+			}
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)40,
+				L"Stack-Size is wrong");
+			new (s2_2) S2();
+
+			stackAlloc.FreeMemory(s2_2, sizeof(S2));
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)32,
+				L"Stack-Size is wrong");
+
+			stackAlloc.FreeMemory(s2_1, sizeof(S2));
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)24,
+				L"Stack-Size is wrong");
+
+			stackAlloc.FreeMemory(s2, sizeof(S2));
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)16,
+				L"Stack-Size is wrong");
+
+			stackAlloc.FreeMemory(s1, sizeof(S1));
+			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)0,
+				L"Stack-Size is wrong");
 		}
 	};
 

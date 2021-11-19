@@ -175,7 +175,8 @@ project "GinXUnitTest"
 		"GinX/vendor/spdlog/include",
 		"GinX/src",
 		"GinX/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.EnTT}"
 	}
 
 	links

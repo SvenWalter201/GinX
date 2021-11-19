@@ -10,6 +10,9 @@
     <Filter Include="src\GinX\Core">
       <UniqueIdentifier>{AACA9F4B-168B-1B82-DFC5-64FF4B45605E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GinX\Core\MemoryManagement">
+      <UniqueIdentifier>{AF481DF7-9B6E-E75D-84B4-6C2970790C2A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\GinX\CoreSystems">
       <UniqueIdentifier>{22283410-0EB7-BDD9-B7D5-D1D4A343CE7F}</UniqueIdentifier>
     </Filter>
@@ -96,6 +99,9 @@
     <ClInclude Include="src\GinX\Core\Log.h">
       <Filter>src\GinX\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\GinX\Core\MemoryManagement\CustomAllocators.h">
+      <Filter>src\GinX\Core\MemoryManagement</Filter>
+    </ClInclude>
     <ClInclude Include="src\GinX\Core\MouseButtonCodes.h">
       <Filter>src\GinX\Core</Filter>
     </ClInclude>
@@ -165,7 +171,19 @@
     <ClInclude Include="src\GinX\Renderer\VertexArray.h">
       <Filter>src\GinX\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\GinX\Scene\Components.h">
+      <Filter>src\GinX\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Scene\Entity.h">
+      <Filter>src\GinX\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Scene\RenderingSystem.h">
+      <Filter>src\GinX\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\GinX\Scene\Scene.h">
+      <Filter>src\GinX\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GinX\Scene\System.h">
       <Filter>src\GinX\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
@@ -1446,12 +1464,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\GinX\Scene\Entity.h" />
-    <ClInclude Include="src\GinX\Scene\System.h" />
-    <ClInclude Include="src\GinX\Scene\RenderingSystem.h" />
-    <ClInclude Include="src\GinX\Scene\Components.h" />
-    <ClInclude Include="src\GinX\Core\MemoryManagement\StackAllocator.h" />
-    <ClInclude Include="src\GinX\Core\MemoryManagement\MemoryManager.h" />
+    <ClInclude Include="src\GinX\Core\MemoryManagement\Allocator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GinX\Core\Application.cpp">
@@ -1465,6 +1478,9 @@
     </ClCompile>
     <ClCompile Include="src\GinX\Core\Log.cpp">
       <Filter>src\GinX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\Core\MemoryManagement\CustomAllocators.cpp">
+      <Filter>src\GinX\Core\MemoryManagement</Filter>
     </ClCompile>
     <ClCompile Include="src\GinX\ECS\Manager.cpp">
       <Filter>src\GinX\ECS</Filter>
@@ -1505,6 +1521,18 @@
     <ClCompile Include="src\GinX\Renderer\VertexArray.cpp">
       <Filter>src\GinX\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\GinX\Scene\Entity.cpp">
+      <Filter>src\GinX\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\Scene\RenderingSystem.cpp">
+      <Filter>src\GinX\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\Scene\Scene.cpp">
+      <Filter>src\GinX\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GinX\Scene\System.cpp">
+      <Filter>src\GinX\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1535,9 +1563,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\GinX\Scene\Entity.cpp" />
-    <ClCompile Include="src\GinX\Scene\RenderingSystem.cpp" />
-    <ClCompile Include="src\GinX\Scene\Scene.cpp" />
-    <ClCompile Include="src\GinX\Scene\System.cpp" />
+    <ClCompile Include="src\GinX\Core\MemoryManagement\Allocator.cpp" />
   </ItemGroup>
 </Project>

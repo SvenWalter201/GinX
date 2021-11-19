@@ -9,6 +9,9 @@
 #include "GinX/CoreSystems/DataStructures/DynamicArray.h"
 #include "GinX/CoreSystems/DataStructures/Map.h"
 
+#include "GinX/Core/MemoryManagement/Allocator.h"
+#include "GinX/Core/MemoryManagement/CustomAllocators.h"
+
 #include "GinX/ECS/Manager.h"
 #include "GinX/Scene/Scene.h"
 #include "GinX/Scene/Entity.h"
