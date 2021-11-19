@@ -16,6 +16,56 @@ namespace GinXUnitTest
 		float A, B; //size : 8 aligned Size: 8
 	};
 
+	TEST_CLASS(GinXPoolAllocatorTest)
+	{
+	public:
+		TEST_METHOD(PoolAllocator) 
+		{
+			auto poolAlloc = GinX::PoolAllocator(3, sizeof(S1));
+			Assert::AreEqual(poolAlloc.GetPoolSize(), (size_t)48, 
+				L"PoolAllocator is the wrong size");
+		
+			S1* s1 = static_cast<S1*>(poolAlloc.AllocateMemory(sizeof(S1)));
+			if (s1 == nullptr)
+			{
+				Assert::IsFalse(true, L"Couldn't allocate s1");
+				return;
+			}
+			new (s1) S1();
+
+			S1* s1_1 = static_cast<S1*>(poolAlloc.AllocateMemory(sizeof(S1)));
+			if (s1_1 == nullptr)
+			{
+				Assert::IsFalse(true, L"Couldn't allocate s1_1");
+				return;
+			}
+			new (s1_1) S1();
+
+			S1* s1_2 = static_cast<S1*>(poolAlloc.AllocateMemory(sizeof(S1)));
+			if (s1_2 == nullptr)
+			{
+				Assert::IsFalse(true, L"Couldn't allocate s1_2");
+				return;
+			}
+			new (s1_2) S1();
+
+			poolAlloc.FreeMemory(s1_1, sizeof(S1));
+
+			S2* s2 = static_cast<S2*>(poolAlloc.AllocateMemory(sizeof(S2)));
+			if (s2 == nullptr)
+			{
+				Assert::IsFalse(true, L"Couldn't allocate s2");
+				return;
+			}
+			new (s2) S2();
+
+			poolAlloc.FreeMemory(s1_2, sizeof(S1));
+			poolAlloc.FreeMemory(s1, sizeof(S1));
+			poolAlloc.FreeMemory(s2, sizeof(S2));
+
+		}
+	};
+
 	TEST_CLASS(GinXStackAllocatorTest)
 	{
 	public:
@@ -30,8 +80,7 @@ namespace GinXUnitTest
 			S1* s1 = static_cast<S1*>(stackAlloc.AllocateMemory(sizeof(S1)));
 			if (s1 == nullptr)
 			{
-				Assert::IsFalse(true,
-					L"Not enough Stack-Size_s1");
+				Assert::IsFalse(true, L"Not enough Stack-Size_s1");
 				return;
 			}
 			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)16,
@@ -44,8 +93,7 @@ namespace GinXUnitTest
 			S2* s2 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
 			if (s2 == nullptr)
 			{
-				Assert::IsFalse(true,
-					L"Not enough Stack-Size s2");
+				Assert::IsFalse(true, L"Not enough Stack-Size s2");
 				return;
 			}
 			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)24,
@@ -55,8 +103,7 @@ namespace GinXUnitTest
 			S2* s2_1 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
 			if (s2_1 == nullptr)
 			{
-				Assert::IsFalse(true,
-					L"Not enough Stack-Size s2_1");
+				Assert::IsFalse(true, L"Not enough Stack-Size s2_1");
 				return;
 			}
 			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)32,
@@ -71,8 +118,7 @@ namespace GinXUnitTest
 			S2* s2_2 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
 			if (s2_2 == nullptr)
 			{
-				Assert::IsFalse(true,
-					L"Not enough Stack-Size s2_2");
+				Assert::IsFalse(true, L"Not enough Stack-Size s2_2");
 				return;
 			}
 			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)24,
@@ -82,8 +128,7 @@ namespace GinXUnitTest
 			S2* s2_3 = static_cast<S2*>(stackAlloc.AllocateMemory(sizeof(S2)));
 			if (s2_3 == nullptr)
 			{
-				Assert::IsFalse(true,
-					L"Not enough Stack-Size s2_2");
+				Assert::IsFalse(true, L"Not enough Stack-Size s2_2");
 				return;
 			}
 			Assert::AreEqual(stackAlloc.GetCurrentStackSize(), (size_t)32,

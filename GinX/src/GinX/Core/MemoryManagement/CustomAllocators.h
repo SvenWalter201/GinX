@@ -71,22 +71,29 @@ namespace GinX
 	class PoolAllocator : public IAllocator
 	{
 	public:
-		PoolAllocator(size_t poolSize, size_t chunkSize);
+		PoolAllocator(size_t numChunks, size_t chunkSize, IAllocator* parentAllocator = nullptr);
 		~PoolAllocator();
 
 		virtual void* AllocateMemory(size_t size) override;
 		virtual void FreeMemory(void* mem, size_t size) override;
 
+		inline size_t GetPoolSize() const { return m_PoolSize; }
+		inline size_t GetNumChunks() const { return m_NumChunks; }
+		inline size_t GetChunkSize() const { return m_ChunkSize; }
+
 	private:
 		char* m_PoolBegin;
 		size_t m_PoolSize;
 
+		int* m_IndexList;
+		int m_NextFreeIndex;
+
 		size_t m_ChunkSize;
 		size_t m_NumChunks;
 
-		int m_NextFreeIndex;
-
 		IAllocator* m_ParentAllocator;
+
+		static const int INVALID = -1;
 
 		//not accessible
 		PoolAllocator() {}
